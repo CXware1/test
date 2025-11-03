@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vape Aura</title>
+  <style>
+    :root{
+      --bg:#0f1020; --panel:#141532; --text:#eef1ff; --muted:#bac2ff; --brand:#7aa2ff; --accent:#92ffd6; --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--text);
+         -webkit-font-smoothing:antialiased;}
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+
+    /* Header (mobile) */
+    .mobile-header{position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:14px 16px; background:rgba(20,21,50,.8); backdrop-filter: blur(8px); border-bottom:1px solid var(--line)}
+    .logo{font-weight:900; letter-spacing:.08em}
+    .menu-icon{font-size:24px; line-height:1; cursor:pointer; user-select:none}
+
+    /* Layout */
+    .wrap{display:grid; grid-template-columns: 280px 1fr; gap:0; min-height: calc(100dvh - 56px)}
+    nav.side-menu{border-right:1px solid var(--line); background:rgba(255,255,255,.02)}
+    nav.side-menu ul{list-style:none; margin:0; padding:16px}
+    .menu-title{display:block; padding:12px 10px; margin:8px 0 4px; font-weight:800; color:var(--muted)}
+    .submenu{padding-left:8px; border-left:2px solid var(--line)}
+    .submenu a{display:block; padding:10px 12px; border-radius:10px; opacity:.9}
+    .submenu a:hover{background:rgba(255,255,255,.06); opacity:1}
+
+    /* Main */
+    main{padding:22px}
+    h2,h3{margin:.5em 0}
+    .category-section{display:none}
+    .category-section.active{display:block}
+
+    /* Home */
+    .promos{display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:14px; margin:16px 0 10px}
+    .promo-item{background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden}
+    .promo-item p{margin:0; padding:10px 12px; display:flex; justify-content:center; gap:10px}
+    .old-price{text-decoration:line-through; color:#ffbaba}
+    .new-price{color:#a6ffcf; font-weight:800}
+    .home-links{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0}
+    .btn-link{display:inline-flex; padding:10px 14px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.04)}
+
+    /* Subcategory menu */
+    .subcategory-menu{display:flex; flex-wrap:wrap; gap:10px; margin:8px 0 16px}
+    .subcategory-menu button{all:unset; padding:10px 14px; border-radius:999px; border:1px solid var(--line); cursor:pointer; background:rgba(255,255,255,.03)}
+    .subcategory-menu button.active{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#051028; font-weight:800}
+
+    /* Products */
+    .product{display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap:10px}
+    .product img{border-radius:12px; border:1px solid var(--line); aspect-ratio:3/4; object-fit:cover}
+    .product p{margin:0 0 8px; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .wrap{grid-template-columns: 1fr}
+      nav.side-menu{display:none}
+      nav.side-menu.open{display:block; position:fixed; inset:56px 0 0 auto; width:85%; max-width:320px; background:rgba(20,21,50,.98)}
+    }
+  </style>
+</head>
+<body>
+  <header class="mobile-header">
+    <div class="logo" id="homeLogo">VAPE AURA</div>
+    <div class="menu-icon" id="menuIcon">&#9776;</div>
+  </header>
+
+  <div class="wrap">
+    <nav class="side-menu" id="sideMenu">
+      <ul>
+        <li>
+          <span class="menu-title">E-liquid</span>
+          <ul class="submenu">
+            <li><a href="#" data-category="20mg">20mg</a></li>
+            <li><a href="#" data-category="50mg">50mg</a></li>
+          </ul>
+        </li>
+        <li>
+          <span class="menu-title">Disposable vapes</span>
+          <ul class="submenu">
+            <li><a href="#" data-category="elfbar">Elfbar</a></li>
+            <li><a href="#" data-category="waka">Waka</a></li>
+            <li><a href="#" data-category="vozol">Vozol</a></li>
+            <li><a href="#" data-category="bangbox">Bang Box</a></li>
+            <li><a href="#" data-category="hqd">HQD</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- HOME -->
+      <section id="home" class="category-section active">
+        <h3>Каталог VAPE AURA</h3>
+        <p>АКЦИЯ</p>
+        <div class="promos">
+          <div class="promo-item">
+            <img src="https://i.postimg.cc/CxNwB8W1/Vape-Aura.jpg" alt="Vape-Aura акция"/>
+            <p>Vape Aura <span class="old-price">6€</span> → <span class="new-price">5€</span></p>
+          </div>
+        </div>
+        <div class="home-links">
+          <a href="https://t.me/+_AYBLfuWYDQyY2Ji" target="_blank" class="btn-link">Наш Telegram-канал</a>
+          <a href="https://t.me/websiteva" target="_blank" class="btn-link">Вопросы по каталогу</a>
+        </div>
+      </section>
+
+      <!-- 20mg -->
+      <section class="category-section" id="section-20mg">
+        <h2>E-liquid 20mg</h2>
+        <div class="subcategory-menu">
+          <button data-subcategory="ivg" class="active">IVG 10ml</button>
+          <button data-subcategory="pod-juice">Nasty 10ml</button>
+          <button data-subcategory="frumist">Vape Aura 10ml</button>
+          <button data-subcategory="savage">Savage Vape 10ml</button>
+          <button data-subcategory="podsalt">Pod Salt 10ml</button>
+        </div>
+
+        <div class="subcategory-section" data-subcategory-content="ivg">
+          <h3>IVG - 7€</h3>
+          <div class="product">
+            <img src="https://i.postimg.cc/bv1St4ZJ/ivg-1.jpg" alt="1"><p>1. Клубника-малина</p>
+            <img src="https://i.postimg.cc/9FSDNcT0/ivg-6.jpg" alt="2"><p>2. Шипучая вишня</p>
+            <img src="https://i.postimg.cc/XqYrtJQG/ivg-7.jpg" alt="3"><p>3. Кислые ягоды</p>
+            <img src="https://i.postimg.cc/L81ncGBT/ivg-10.jpg" alt="4"><p>4. Манго-персик</p>
+            <img src="https://i.postimg.cc/TwCwjxfR/ivg-11.jpg" alt="5"><p>5. Розовая шипучка</p>
+            <img src="https://i.postimg.cc/Gttpqfmv/ivg-12.jpg" alt="6"><p>6. Кислая малина с гранатом</p>
+            <img src="https://i.postimg.cc/7L4YphLH/ivg-13.jpg" alt="7"><p>7. Тропический остров</p>
+            <img src="https://i.postimg.cc/k4XMgH8L/ivg-14.jpg" alt="8"><p>8. Ягодная жвачка</p>
+            <img src="https://i.postimg.cc/WpypsX4f/ivg-15.jpg" alt="9"><p>9. Пина колада</p>
+          </div>
+        </div>
+
+        <div class="subcategory-section" data-subcategory-content="pod-juice" style="display:none;">
+          <h3>Nasty - 7€</h3>
+          <div class="product">
+            <img src="https://i.postimg.cc/4dPcX9Xg/20mg-3.jpg" alt="3"><p>1. Синяя малина</p>
+          </div>
+        </div>
+
+        <div class="subcategory-section" data-subcategory-content="frumist" style="display:none;">
+          <h3>Vape Aura - 6€</h3>
+          <div class="product">
+            <img src="https://i.postimg.cc/g0fyfD30/20250701-143510.jpg" alt="1"><p>1. Вишня-арбуз</p>
+            <img src="https://i.postimg.cc/g0fyfD30/20250701-143510.jpg" alt="2"><p>2. Тропики</p>
+            <img src="https://i.postimg.cc/g0fyfD30/20250701-143510.jpg" alt="3"><p>3. Банан-манго</p>
+            <img src="https://i.postimg.cc/g0fyfD30/20250701-143510.jpg" alt="4"><p>4. Виноград-дыня</p>
+            <img src="https://i.postimg.cc/g0fyfD30/20250701-143510.jpg" alt="5"><p>5. Яблоко-груша</p>
+            <img src="https://i.postimg.cc/g0fyfD30/20250701-143510.jpg" alt="6"><p>6. Лесные ягоды</p>
+            <img src="https://i.postimg.cc/g0fyfD30/20250701-143510.jpg" alt="7"><p>7. Киви-клюква</p>
+          </div>
+        </div>
+
+        <div class="subcategory-section" data-subcategory-content="savage" style="display:none;">
+          <h3>Savage - 5€</h3>
+          <div class="product">
+            <img src="https://i.postimg.cc/sfpT2TjZ/Savage-1.jpg" alt="1"><p>1. Личи ICE</p>
+            <img src="https://i.postimg.cc/Kjv3xcvS/Savage-2.jpg" alt="2"><p>2. Дыня ICE</p>
+            <img src="https://i.postimg.cc/sDM1cNMV/Savage-3.jpg" alt="3"><p>3. Клубника ICE</p>
+            <img src="https://i.postimg.cc/k4Mgt1rx/Savage-4.jpg" alt="4"><p>4. Mocha ICE</p>
+            <img src="https://i.postimg.cc/T3rdNMf5/Savage-5.jpg" alt="5"><p>5. Банановый пудинг</p>
+            <img src="https://i.postimg.cc/mrmGKTqh/Savage-6.jpg" alt="6"><p>6. Ананасовое кокосове молоко</p>
+            <img src="https://i.postimg.cc/N0Kch3wb/Savage-7.jpg" alt="7"><p>7. Свежая мята</p>
+            <img src="https://i.postimg.cc/hjR3C64X/Savage-8.jpg" alt="8"><p>8. Двойное яблоко</p>
+            <img src="https://i.postimg.cc/43613dZK/Savage-9.jpg" alt="9"><p>9. Клубничное мороженное</p>
+            <img src="https://i.postimg.cc/vBmvKHNM/Savage-1.jpg" alt="10"><p>10. Лимонный черный чай</p>
+          </div>
+        </div>
+
+        <div class="subcategory-section" data-subcategory-content="podsalt" style="display:none;">
+          <h3>Pod Salt - 7€</h3>
+          <div class="product">
+            <img src="https://i.postimg.cc/tJM1m6VL/Pod-Salt-1.jpg" alt="1"><p>1. Ваниль</p>
+            <img src="https://i.postimg.cc/SNYjxJ9x/Pod-Salt-2.jpg" alt="2"><p>2. Малина-яблоко ICE</p>
+            <img src="https://i.postimg.cc/zfxqjrhQ/Pod-Salt-3.jpg" alt="3"><p>3. Чёрная смородина и ментол</p>
+            <img src="https://i.postimg.cc/907VCwk3/Pod-Salt-4.jpg" alt="4"><p>4. Клубничный зефир</p>
+            <img src="https://i.postimg.cc/jSXDGBNH/Pod-Salt-5.jpg" alt="5"><p>5. Синий пузырь</p>
+            <img src="https://i.postimg.cc/s2xgbx3z/Pod-Salt-6.jpg" alt="6"><p>6. Клубника-киви ICE</p>
+            <img src="https://i.postimg.cc/sgDjZxQW/Pod-Salt-7.jpg" alt="7"><p>7. Яблоко</p>
+            <img src="https://i.postimg.cc/KznSWh3F/Pod-Salt-8.jpg" alt="8"><p>8. Черника-гранат</p>
+            <img src="https://i.postimg.cc/xjNc0tBz/Pod-Salt-9.jpg" alt="9"><p>9. Клубника</p>
+            <img src="https://i.postimg.cc/zXnZ7gHM/Pod-Salt-10.jpg" alt="10"><p>10. Манго, клубника и персик</p>
+            <img src="https://i.postimg.cc/VvXfXHcZ/Pod-Salt-11.jpg" alt="11"><p>11. Чернично-ежевичный лимонад</p>
+            <img src="https://i.postimg.cc/G3FqSJzk/Pod-Salt-12.jpg" alt="12"><p>12. Белый виноград, огурец и яблоко</p>
+            <img src="https://i.postimg.cc/W4q7mMhq/Pod-Salt-13.jpg" alt="13"><p>13. Ягодно-виноградный взрыв</p>
+            <img src="https://i.postimg.cc/Kznrwx7Z/Pod-Salt-14.jpg" alt="14"><p>14. Лимонно-лаймовое сорбе</p>
+            <img src="https://i.postimg.cc/GtdJ1Vzv/Pod-Salt-15.jpg" alt="15"><p>15. Тройная малина ICE</p>
+            <img src="https://i.postimg.cc/sXhsR01f/Pod-Salt-16.jpg" alt="16"><p>16. Свежий малиновый мохито</p>
+            <img src="https://i.postimg.cc/qvhKWp09/Pod-Salt-17.jpg" alt="17"><p>17. Белый мармеладный мишка</p>
+            <img src="https://i.postimg.cc/PrhhByHh/Pod-Salt-18.jpg" alt="18"><p>18. Розово-фиолетовый лимонад</p>
+            <img src="https://i.postimg.cc/xdWVgy5w/Pod-Salt-19.jpg" alt="19"><p>19. Сладкий мандарин и кокос</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 50mg -->
+      <section class="category-section" id="section-50mg">
+        <h2>E-liquid 50mg</h2>
+        <div class="subcategory-menu">
+          <button data-subcategory="elflio" class="active">Elfliq 10-30ml</button>
+          <button data-subcategory="chaser">Chaser 10-30ml</button>
+          <button data-subcategory="vozol">Vozol 10-30ml</button>
+        </div>
+
+        <div class="subcategory-section" data-subcategory-content="elflio">
+          <h3>Elfliq - 7€/15€</h3>
+          <div class="product">
+            <img src="https://i.postimg.cc/rF6CZ1wn/Elfliq-1.jpg" alt="1"><p>1. Зелёная мята</p>
+            <img src="https://i.postimg.cc/MT5H08XJ/Elfliq-2.jpg" alt="2"><p>2. Rhubarb snoow</p>
+            <img src="https://i.postimg.cc/htRnG5PL/Elfliq-3.jpg" alt="3"><p>3. Розовый грейпфрут</p>
+            <img src="https://i.postimg.cc/yNP5CL3Y/50mg-5.jpg" alt="5"><p>4. Яблоко-персик</p>
+            <img src="https://i.postimg.cc/GmHxtdzN/Elfliq-6.jpg" alt="6"><p>5. Ежевика-лимон</p>
+            <img src="https://i.postimg.cc/RCtFM8cR/Elfliq-7.jpg" alt="7"><p>6. Виноград</p>
+            <img src="https://i.postimg.cc/7LXznRB7/Elfliq-8.jpg" alt="8"><p>7. Вишня</p>
+            <img src="https://i.postimg.cc/0534vMjm/Elfliq-9.jpg" alt="9"><p>8. Виноград-вишня</p>
+            <img src="https://i.postimg.cc/63D7pxjr/Elfliq-10.jpg" alt="10"><p>9. Яблоко-груша</p>
+            <img src="https://i.postimg.cc/63H2JGRm/Elfliq-11.jpg" alt="11"><p>10. Лимон-лайм</p>
+            <img src="https://i.postimg.cc/28tQLg1K/Elfliq-12.jpg" alt="12"><p>11. Клубника банан</p>
+            <img src="https://i.postimg.cc/L8r3wGR1/Elfliq-13.jpg" alt="13"><p>12. Черника, роза, мята</p>
+            <img src="https://i.postimg.cc/q7LQKzcJ/Elfliq-14.jpg" alt="14"><p>13. Малина-личи</p>
+            <img src="https://i.postimg.cc/9frst6bw/Elfliq-15.jpg" alt="15"><p>14. Кислый арбузный мишка</p>
+          </div>
+        </div>
+
+        <div class="subcategory-section" data-subcategory-content="chaser" style="display:none;">
+          <h3>Chaser - 7€/15€</h3>
+          <div class="product">
+            <img src="https://i.postimg.cc/ZKJHKFDp/chaser-1.jpg" alt="1"><p>1. Персик (10ml)</p>
+            <img src="https://i.postimg.cc/rwPNj6yN/chaser-2.jpg" alt="2"><p>2. Дыня</p>
+            <img src="https://i.postimg.cc/9fwtNxr5/chaser-3.jpg" alt="3"><p>3. Груша</p>
+            <img src="https://i.postimg.cc/XNkKhB7J/chaser-4.jpg" alt="4"><p>4. Клубника</p>
+            <img src="https://i.postimg.cc/wTWXxKNY/chaser-5.jpg" alt="5"><p>5. Вишня</p>
+            <img src="https://i.postimg.cc/K8RnR97k/chaser-6.jpg" alt="6"><p>6. Гранат</p>
+            <img src="https://i.postimg.cc/KzrTdCbV/chaser-9.jpg" alt="9"><p>7. Арбуз</p>
+            <img src="https://i.postimg.cc/mkmHrMty/chaser-10.jpg" alt="10"><p>8. Банан</p>
+          </div>
+        </div>
+
+        <div class="subcategory-section" data-subcategory-content="vozol" style="display:none;">
+          <h3>Vozol - 7€/15€</h3>
+          <div class="product">
+            <img src="https://i.postimg.cc/VvZQ5wn5/Vozol-z-1.jpg" alt="1"><p>1. Черника ICE</p>
+            <img src="https://i.postimg.cc/HLdZGK86/Vozol-z-2.jpg" alt="2"><p>2. Фиолетовая конфета</p>
+            <img src="https://i.postimg.cc/tT78ffLX/Vozol-z-3.jpg" alt="3"><p>3. Клубничное мороженное</p>
+            <img src="https://i.postimg.cc/y6ZbZFK3/Vozol-z-4.jpg" alt="4"><p>4. Арбузная жвачка</p>
+            <img src="https://i.postimg.cc/NF6DPkfw/Vozol-z-5.jpg" alt="5"><p>5. Персик, манго, арбуз</p>
+            <img src="https://i.postimg.cc/W1HG8H6g/Vozol-z-6.jpg" alt="6"><p>6. Ягодный микс</p>
+            <img src="https://i.postimg.cc/63L4kjRY/Vozol-z-7.jpg" alt="7"><p>7. Киви, маракуя, гуава</p>
+            <img src="https://i.postimg.cc/wMrqZLWs/Vozol-z-8.jpg" alt="8"><p>8. Лимон с синей малиной</p>
+            <img src="https://i.postimg.cc/Bn4SySN4/Vozol-z-9.jpg" alt="9"><p>9. Клубника - киви</p>
+            <img src="https://i.postimg.cc/J4RSCswz/Vozol-z-10.jpg" alt="10"><p>10. Черника - арбуз</p>
+            <img src="https://i.postimg.cc/hjbM20G4/Vozol-z-11.jpg" alt="11"><p>11. Гранатовый лимонад</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Заглушки под остальные категории (можно заполнить, если нужны) -->
+      <section class="category-section" id="section-elfbar"><h2>Elfbar</h2></section>
+      <section class="category-section" id="section-waka"><h2>Waka</h2></section>
+      <section class="category-section" id="section-vozol"><h2>Vozol</h2></section>
+      <section class="category-section" id="section-bangbox"><h2>Bang Box</h2></section>
+      <section class="category-section" id="section-hqd"><h2>HQD</h2></section>
+    </main>
+  </div>
+
+  <script>
+    // Mobile menu open/close
+    const menuIcon = document.getElementById('menuIcon');
+    const sideMenu = document.getElementById('sideMenu');
+    menuIcon.addEventListener('click', () => sideMenu.classList.toggle('open'));
+
+    // Go home on logo click
+    const homeLogo = document.getElementById('homeLogo');
+    homeLogo.addEventListener('click', () => setActiveCategory('home'));
+
+    // Side menu category links
+    sideMenu.querySelectorAll('[data-category]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = a.getAttribute('data-category');
+        setActiveCategory(cat);
+        sideMenu.classList.remove('open');
+      })
+    });
+
+    // Switch category function
+    function setActiveCategory(cat){
+      document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+      const id = cat === 'home' ? '#home' : `#section-${cat}`;
+      document.querySelector(id)?.classList.add('active');
+      // scroll to top of main
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    // Subcategory menus
+    document.querySelectorAll('.subcategory-menu').forEach(menu => {
+      menu.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if(!btn) return;
+        const sub = btn.getAttribute('data-subcategory');
+        // toggle active button
+        menu.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        // show proper subcategory section inside same parent section
+        const section = menu.closest('.category-section');
+        section.querySelectorAll('[data-subcategory-content]').forEach(b => {
+          b.style.display = b.getAttribute('data-subcategory-content') === sub ? '' : 'none';
+        });
+      })
+    });
+  </script>
+</body>
+</html>
